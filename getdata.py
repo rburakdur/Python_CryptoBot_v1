@@ -20,7 +20,7 @@ def app():
     filename = "config.txt"
     connection = BinanceConnection(filename)
     coins = [coin.rstrip("\n") for coin in open("coin_list.txt")]
-    intervals = ["15m"]  # , "30m", "1h", "4h"]
+    intervals = ["15m" , "30m", "1h", "4h"]
 
     # while True:
     #    time.sleep(50)  # seconds
