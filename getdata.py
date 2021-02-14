@@ -16,10 +16,11 @@ class BinanceConnection:
         self.client = Client(key, secret)
 
 
-if __name__ == "__main__":
-    connection = BinanceConnection("config.txt")
+def app():
+    filename = "config.txt"
+    connection = BinanceConnection(filename)
     coins = [coin.rstrip("\n") for coin in open("coin_list.txt")]
-    intervals = ["15m", "30m", "1h"]  # , "4h"]
+    intervals = ["15m"]  # , "30m", "1h", "4h"]
 
     # while True:
     #    time.sleep(50)  # seconds
@@ -40,11 +41,15 @@ if __name__ == "__main__":
                 print(exp.message, flush=True)
 
                 # Coin values
-            open = [float(entry[1]) for entry in klines]
+            op = [float(entry[1]) for entry in klines]
             high = [float(entry[2]) for entry in klines]
             low = [float(entry[3]) for entry in klines]
             close = [float(entry[4]) for entry in klines]
 
             ta_indicators.TechnicalAnylysis(
-                symbol, interval, open, high, low, close)
+                symbol, interval, op, high, low, close)
         print(f"{current_interval} Taraması Bitti.")
+
+
+if __name__ == "__main__":
+    app()
