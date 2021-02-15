@@ -8,7 +8,7 @@ if __name__ == "__main__":
     def check():
         return getdata.app("check")
 
-    schedule.every(1).minutes.do(check)
+    schedule.every(3).minutes.do(check)
     schedule.every(15).minutes.do(calculate)
 
     while True:
