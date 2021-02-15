@@ -1,9 +1,12 @@
 import time
 import getdata
 import schedule
+import telegram_bot
 
 
 if __name__ == "__main__":
+    telegram_bot.telegram_bot_sendtext("__ Online __")
+
     def calculate():
         return getdata.app("calculate")
 
