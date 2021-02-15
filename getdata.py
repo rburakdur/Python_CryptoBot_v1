@@ -34,7 +34,7 @@ def app(mission):
                 # Check for every coins in coin_list.txt
                 symbol = current_coin
                 interval = current_interval
-                limit = 200
+                limit = 100
 
                 try:  # get data for coin
                     klines = connection.client.get_klines(

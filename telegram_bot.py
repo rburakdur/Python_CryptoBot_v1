@@ -2,10 +2,12 @@ import requests
 import datetime
 
 
-def telegram_bot_sendtext(symbol="NONE", interval="NONE",  current="NONE", resistance="NONE", support="NONE", stop="NONE", status="NONE"):
+current_time = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
 
-    current_time = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
-    bot_message = f"{symbol}\t\t{interval}\n{status}\nNow : {current}\nResistance : {resistance}\nSupport : {support}\nStop : {stop}\nTime : {current_time}"
+# SENDER
+
+
+def telegram_bot_sendtext(bot_message):
     bot_token = "1549960256:AAHtjmQztPYKSW_BwVxXiPpf7Dnca8w4LgY"
     bot_chatID = "-1001466370685"
     send_text = 'https://api.telegram.org/bot' + bot_token + \
@@ -14,4 +16,16 @@ def telegram_bot_sendtext(symbol="NONE", interval="NONE",  current="NONE", resis
     return response.json()
 
 
-# telegram_bot_sendtext("xd")
+def buy_message(tg):
+
+    asd = ""
+    for i in range(len(tg)):
+        asd += (tg[i] + "\n" + "--------------------------\n")
+    buy_message = f"{asd}\n{current_time}"
+    telegram_bot_sendtext(buy_message)
+
+
+def profit_message(prf):
+    bot_message = f"{prf}\n" + \
+        "--------------------------\n" + f"{current_time}"
+    telegram_bot_sendtext(bot_message)

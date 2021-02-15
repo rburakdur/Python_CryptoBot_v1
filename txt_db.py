@@ -26,19 +26,3 @@ def Get_data():
     with open(filename, "r") as js:
         opened = json.loads(js.read())
         return opened
-
-
-#xd = Get_data().keys()
-# print(xd)
-# csssss = {"BTCUSDT15m": [{
-#    "resistance": "150000",
-#    "support": "120546",
-#    "stop": "1"}
-# ]}
-
-
-#
-#a1 = dict(Get_data())
-# a1.update(csssss)
-# print(a1)
-# Write_data(a1)

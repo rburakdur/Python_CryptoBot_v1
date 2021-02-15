@@ -9,7 +9,7 @@ class TechnicalAnylysis:
     ma2_value = 34
     stop_space = 1  # %
     current_i = 0
-    back_check = 8
+    back_check = 15
     ######################################################################################################
 
     def __init__(self, symbol1, interval, open, high, low, close):
