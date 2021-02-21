@@ -2,7 +2,8 @@
 from binance.client import Client
 import ta_indicators
 import checker
-import time
+from checker import zaman
+from app import first
 
 
 class BinanceConnection:
@@ -43,7 +44,7 @@ def app(mission):
                     print(exp.status_code, flush=True)
                     print(exp.message, flush=True)
 
-                    # Coin values
+                # Coin values
                 op = [float(entry[1]) for entry in klines]
                 high = [float(entry[2]) for entry in klines]
                 low = [float(entry[3]) for entry in klines]
@@ -52,13 +53,13 @@ def app(mission):
              # Calculate Supports, Resistances
                 ta_indicators.TechnicalAnylysis(
                     symbol, interval, op, high, low, close)
-            print(f"{current_interval} Calculated.")
+            print(f"{current_interval} Calculated." + zaman())
 
     elif mission == "check":
         for current_coin in coins:
             symbol = current_coin
             interval = "15m"
-            limit = 200
+            limit = 5
 
             try:  # get data for coin
                 klines = connection.client.get_klines(
@@ -70,8 +71,5 @@ def app(mission):
             # GETTING LAST VALUE
             close = [float(entry[4]) for entry in klines]
             checker.check(symbol, close)
-        print("check complete.")
-
-
-if __name__ == "__main__":
-    app()
+        print("check complete." + zaman())
+        first()

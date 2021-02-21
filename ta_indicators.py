@@ -4,12 +4,13 @@ import txt_db
 
 
 class TechnicalAnylysis:
-
     ma1_value = 9
     ma2_value = 34
     stop_space = 1  # %
     current_i = 0
     back_check = 15
+    ema_val = 14
+    stop_tol = 2  # %
     ######################################################################################################
 
     def __init__(self, symbol1, interval, open, high, low, close):
@@ -20,10 +21,10 @@ class TechnicalAnylysis:
         self.low = low
         self.close = close
 
-        self.indicators(self.symbol, self.interval, self.open,
-                        self.high, self.low, self.close)
+        self.main(self.symbol, self.interval, self.open,
+                  self.high, self.low, self.close)
 
-    def indicators(self, symbol, interval, open, high, low, close):
+    def main(self, symbol, interval, open, high, low, close):
         # close
         close_array = np.asarray(close)
         close_finished = close_array[:-1]
@@ -39,9 +40,13 @@ class TechnicalAnylysis:
 
         ################################################################################################################################################
 
-        self.ma_check(close_finished, high_finished,
-                      low_finished, close_array, symbol, interval)
-
+        av1 = self.ma_check(close_finished, high_finished,
+                            low_finished, close_array, symbol, interval)
+        av2 = self.most(close_finished)
+        if not (av1 == None):
+            av1.extend(av2)
+            txt_db.New_data(av1[0], av1[1], av1[2],
+                            av1[3], av1[4], av1[5], av1[6])
         ################################################################################################################################################
 
     def ma_check(self, close_finished, high_finished, low_finished, close_array, symbol, interval):
@@ -58,8 +63,26 @@ class TechnicalAnylysis:
                 resistance_level = high_finished[current_i]
                 support_level = low_finished[current_i]
                 stop_level = support_level*(1.00 - self.stop_space/100)
+
                 # TO DATABASE
-                txt_db.New_data(symbol, interval, resistance_level,
-                                support_level, stop_level)
+                av1 = [symbol, interval, resistance_level,
+                       support_level, stop_level]
+                return av1
             else:
                 pass  # bulamazsa ne yapsın?
+
+    def to_db(self, av):
+        txt_db.New_data(av)
+
+    def most(self, close_finished):
+        ema = ta.EMA(close_finished, self.ema_val)
+        last_ema = round(ema[-1], 7)
+        ema_stop = last_ema * (1-self.stop_tol/100)
+
+        av2 = [last_ema, ema_stop]
+        return av2
+
+# if (ma_stop > ema_stop):
+#                main_stop = ma_stop
+#            elif (ema_stop > ma_stop):
+#                main_stop = ema_stop

@@ -1,10 +1,8 @@
 import requests
-import datetime
-
-
-current_time = datetime.datetime.now().strftime("%d.%m.%Y %H:%M:%S")
+from checker import zaman
 
 # SENDER
+current_time = zaman()
 
 
 def telegram_bot_sendtext(bot_message):
