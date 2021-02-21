@@ -28,4 +28,4 @@ def first():
     return render_template("index.html", data=data, response=geter())
 
 
-app.run(debug=False)
+app.run(debug=True)
