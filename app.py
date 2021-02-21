@@ -36,8 +36,3 @@ def veri():
 
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
-# 'https://wallpaperaccess.com/full/260161.jpg'
-# background-image: url('https://images.pexels.com/photos/2078266/pexels-photo-2078266.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
-#        background-repeat: no-repeat;
-#  background-attachment: fixed;
-#  background-position: center;
