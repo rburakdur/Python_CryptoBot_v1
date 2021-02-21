@@ -3,7 +3,6 @@ from binance.client import Client
 import ta_indicators
 import checker
 from checker import zaman
-from app import first
 
 
 class BinanceConnection:
@@ -72,4 +71,4 @@ def app(mission):
             close = [float(entry[4]) for entry in klines]
             checker.check(symbol, close)
         print("check complete." + zaman())
-        first()
+        
