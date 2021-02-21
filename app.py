@@ -28,4 +28,5 @@ def first():
     return render_template("index.html", data=data, response=geter())
 
 
-app.run(debug=True)
+if __name__ == '__main__':
+    app.run(debug=True)
