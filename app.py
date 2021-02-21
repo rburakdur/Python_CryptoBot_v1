@@ -28,5 +28,16 @@ def first():
     return render_template("index.html", data=data, response=geter())
 
 
+@app.route('/datas')
+def veri():
+    with open("db.txt", "r") as f:
+        return render_template("datas.html", text=f.read())
+
+
 if __name__ == '__main__':
     app.run(debug=True, use_reloader=False)
+# 'https://wallpaperaccess.com/full/260161.jpg'
+# background-image: url('https://images.pexels.com/photos/2078266/pexels-photo-2078266.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940');
+#        background-repeat: no-repeat;
+#  background-attachment: fixed;
+#  background-position: center;
