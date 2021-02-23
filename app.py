@@ -25,7 +25,7 @@ def geter():
 @app.route('/', methods=["GET"])
 def first():
     data = geter()
-    return render_template("index.html", data=data, response=geter())
+    return render_template("index.html", data=data)
 
 
 @app.route('/datas')
