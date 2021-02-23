@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 import txt_db
 import bot_start
 import threading
@@ -32,6 +32,12 @@ def first():
 def veri():
     with open("db.txt", "r") as f:
         return render_template("datas.html", text=f.read())
+
+
+@app.route('/cron', methods=['GET'])
+def cron():
+    if request.method == 'GET':
+        return "burdaydık"
 
 
 if __name__ == '__main__':
