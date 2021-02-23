@@ -20,3 +20,6 @@ def main():
     while True:
         schedule.run_pending()
         time.sleep(1)
+
+
+getdata.app("check")
