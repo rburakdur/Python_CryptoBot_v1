@@ -24,8 +24,11 @@ def geter():
 
 @app.route('/', methods=["GET"])
 def first():
-    data = geter()
-    return render_template("index.html", data=data)
+    if request.method == 'GET':
+        return "burdaydık"
+    else:
+        data = geter()
+        return render_template("index.html", data=data)
 
 
 @app.route('/datas')
