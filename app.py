@@ -32,7 +32,8 @@ def first():
 @app.route('/datas')
 def veri():
     with open("db.txt", "r") as f:
-        return render_template("datas.html", text=f.read())
+        with open("webList.txt", "r") as w:
+            return render_template("datas.html", text=f.read(), web=w.read())
 
 
 @app.route('/cron', methods=['GET'])

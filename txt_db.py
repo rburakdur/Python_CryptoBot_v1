@@ -61,7 +61,7 @@ def update(cs):
         if (a[i][0] == ls[0]) and (a[i][1] == ls[1]) and (a[i][2] == ls[2]):
 
             a.pop(i)
-            a.insert(i, ls)
+            a.append(ls)
             yaz(a)
             varmi = True
 
